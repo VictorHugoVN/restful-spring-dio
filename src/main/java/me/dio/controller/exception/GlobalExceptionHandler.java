@@ -7,10 +7,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.NoSuchElementException;
-import java.util.logging.Logger;
+//import java.util.logging.Logger;
+import org.slf4j.Logger;
 
 @RestControllerAdvice
-public class GlobalExceptionHandler {
+public class GlobalExceptionHandler extends Throwable {
 
     private final Logger logger = (Logger) LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
@@ -24,12 +25,14 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>("Resource id not found.", HttpStatus.NOT_FOUND);
     }
 
+    /*
     @ExceptionHandler(Throwable.class)
     public ResponseEntity<String> handleUnexpectedException(Throwable unexpectedException){
         var message = "Unexpected server error, see the logs.";
         logger.error(message, unexpectedException);
         return new ResponseEntity<>(message, HttpStatus.INTERNAL_SERVER_ERROR);
     }
+    */
 
 
 }

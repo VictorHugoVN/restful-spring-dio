@@ -5,6 +5,8 @@ import me.dio.domain.repository.UserRepository;
 import me.dio.service.UserService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
@@ -27,5 +29,14 @@ public class UserServiceImpl implements UserService {
             throw new IllegalArgumentException("This account number already exists.");
         }
         return userRepository.save(userToCreate);
+    }
+
+    @Override
+    public List<User> findAll() {
+        List<User> listUsers = userRepository.findAll();
+        if(!listUsers.isEmpty()){
+            return listUsers;
+        }
+        return null;
     }
 }
